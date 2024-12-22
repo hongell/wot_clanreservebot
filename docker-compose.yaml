@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  discord-bot:
+    build: ./bot
+    container_name: discord_wargaming_bot
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - DISCORD_CHANNEL_ID=${DISCORD_CHANNEL_ID}
+      - WG_APPLICATION_ID=${WG_APPLICATION_ID}
+      - WG_CLAN_ID=${WG_CLAN_ID}
+      - OAUTH_PORT=42000
+      - TZ=${TZ}
+      - ADMIN_USER_ID=${ADMIN_USER_ID}
+    ports:
+      - "42000:42000"
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
